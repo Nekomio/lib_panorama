@@ -2,13 +2,90 @@
   <div>
     <!--SelectScene-->
     <div v-if="!selectScene" class="select" v-on:click="selectScene=true">切换场景</div>
-    <div v-if="selectScene" id="selectPanel">
-      <div
+    <div v-if="selectScene" class="web">
+      <h2 class="byr-main-title">北京邮电大学图书馆</h2>
+      <h3 class="byr-sub-title">下拉菜单可跳转场景</h3>
+      <!--    实现首页的手风琴-->
+      <div class="accordion">
+        <div class="tab">
+          <label for="tab1">
+            <div class="tab-item">楼层1</div>
+          </label>
+          <input type="radio" name="tab" id="tab1" />
+          <div class="tab-content-item">
+            <!-- <div
+              v-for="item in getSceneNames()"
+              :key="item"
+              class="selectTag"
+              v-on:click="jumpTo({detail:{dest:item}});selectScene=false"
+            >{{item}}</div> -->
+            <ul data-index="1">
+              <li v-for="item in getSceneNames(1)"
+                  :key="item"><div v-on:click="jumpTo({detail:{dest:item}});selectScene=false" class="byr-floor-room">{{item}}</div></li>
+              <!-- <li data-requestId="p16"><div class="byr-floor-room" >入口刷卡处</div></li>
+              <li data-requestId="p16"><div class="byr-floor-room" >入口屏幕处</div></li> -->
+            </ul>
+          </div>
+          <label for="tab2">
+            <div class="tab-item">楼层2</div>
+          </label>
+          <input type="radio" name="tab" id="tab2" />
+          <div class="tab-content-item">
+            <ul data-index="2">
+              <li v-for="item in getSceneNames(2)"
+                  :key="item"><div v-on:click="jumpTo({detail:{dest:item}});selectScene=false" class="byr-floor-room">{{item}}</div></li>
+
+            </ul>
+          </div>
+          <label for="tab3">
+            <div class="tab-item">楼层3</div>
+          </label>
+          <input type="radio" name="tab" id="tab3" />
+          <div class="tab-content-item">
+            <ul data-index="3">
+              <li v-for="item in getSceneNames(3)"
+                  :key="item"><div v-on:click="jumpTo({detail:{dest:item}});selectScene=false" class="byr-floor-room">{{item}}</div></li>
+            </ul>
+          </div>
+          <label for="tab4">
+            <div class="tab-item">楼层4</div>
+          </label>
+          <input type="radio" name="tab" id="tab4" />
+          <div class="tab-content-item">
+            <ul data-index="4">
+              <li v-for="item in getSceneNames(4)"
+                  :key="item"><div v-on:click="jumpTo({detail:{dest:item}});selectScene=false" class="byr-floor-room">{{item}}</div></li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="floor_controller">
+          <i class="floor_up" title="上楼">
+            <img src="https://vr.nekomio.com/file/VR/up.png" id="up" />
+          </i>
+          <i class="floor_down" title="下楼">
+            <img src="https://vr.nekomio.com/file/VR/down.png" id="down" />
+          </i>
+        </div> -->
+        <div>
+          <!--        点赞功能开始-->
+          <!-- <div class="love" title="点赞">
+            <span class="count">10</span>
+            <img src="images/love.jpg" id="love" />
+          </div> -->
+          <!--        点赞功能结束-->
+          <!-- <i class="message" title="交流">
+            <a href="html/message.html" target="_blank">
+              <img src="images/message.jpg" id="message" /> -->
+            <!-- </a> -->
+          <!-- </i> -->
+        </div>
+      </div>
+      <!-- <div
         v-for="item in getSceneNames()"
         :key="item"
         class="selectTag"
         v-on:click="jumpTo({detail:{dest:item}});selectScene=false"
-      >{{item}}</div>
+      >{{item}}</div> -->
     </div>
     <div v-if="selectScene" class="select" v-on:click="selectScene=false">取消</div>
     <div v-if="editorAddIcon" class="editorPanel">
@@ -45,6 +122,7 @@
       <button v-on:click="edSceneName=''; editorAddScene=false">取消</button>
       <br />
       <input v-model="edSceneName" placeholder="请输入场景名称" />
+      <input v-model="edSceneFloor" placeholder="层数" />
       <input type="file" id="upload" />
     </div>
     <!--Delete Scene-->
@@ -67,7 +145,7 @@
     <div id="sceneContainer" width="100%" height="100%">
       <button id="modebutton" v-if="touchMode" v-on:click="touchMode=false">切换至重力感应</button>
       <button id="modebutton2" v-else v-on:click="touchMode=true">恢复手动控制</button>
-      <!--button class="edit" v-if="!editMode&&mode=='edit'" v-on:click="editModeOn()">开启编辑模式</button-->
+      <!-- <button class="edit" v-if="!editMode&&mode=='edit'" v-on:click="editModeOn()">开启编辑模式</button> -->
       <button class="edit" v-if="editMode" v-on:click="editModeOff()">关闭编辑模式</button>
       <div id="editbar" v-if="editMode">
         <button v-on:click="editorAddIcon=true">添加图标</button>
@@ -101,6 +179,7 @@ export default {
       audioMat: null,
       mode: "",
       token: "",
+      floor: 1,
       editMode: false,
       selectScene: false,
       editCenter: {},
@@ -108,6 +187,7 @@ export default {
       editorAddScene: false,
       editorDelScene: false,
       edSceneName: "",
+      edSceneFloor: "",
       edIconContent: "",
       edIconMode: "",
       textDesc: false,
@@ -161,7 +241,7 @@ export default {
       let retblob = new Blob([retstr], { type: "text/plain" });
       let file = new File([retblob], "vrconfig.txt");
       this.$axios.post(
-        `https://dmsh.bupt.edu.cn/file_admin/api/resources/VR/${file.name}?override=true`,
+        `https://vr.nekomio.com/admin/api/resources/VR/${file.name}?override=true`,
         file.slice(),
         {
           headers: { "X-Auth": this.token, "Content-Type": "text/html" }
@@ -170,14 +250,15 @@ export default {
       this.editMode = false;
       this.scene.remove(this.editCenter);
     },*/
-    getSceneNames: function() {
+    getSceneNames: function(id = -1) {
       let ret = [];
       for (let name of this.sceneMap.keys()) {
-        if (name == this.currentScene) continue;
+        console.log(this.sceneMap.get(name));
+        if (id != -1 && id != this.sceneMap.get(name).floor) continue;
         ret.push(name);
       }
       return ret;
-    } /*
+    },/*
     edAddIcon: function() {
       let pos = {
         theta: THREE.Math.degToRad(this.eularAngle.x),
@@ -235,14 +316,14 @@ export default {
       let mini = await new Promise((resolve, reject) => {
         this.$axios
           .post(
-            `https://dmsh.bupt.edu.cn/file_admin/api/resources/VR/${compressedimg.name}?override=true`,
+            `https://vr.nekomio.com/admin/api/resources/VR/${compressedimg.name}?override=true`,
             compressedimg.slice(),
             {
               headers: { "X-Auth": this.token, "Content-Type": "text/html" }
             }
           )
           .then(
-            resolve(`https://dmsh.bupt.edu.cn/files/VR/${compressedimg.name}`)
+            resolve(`https://vr.nekomio.com/file/VR/${compressedimg.name}`)
           );
       });
       let partial = [];
@@ -250,18 +331,18 @@ export default {
         let pt = await new Promise((resolve, reject) => {
           this.$axios
             .post(
-              `https://dmsh.bupt.edu.cn/file_admin/api/resources/VR/${cimg.name}?override=true`,
+              `https://vr.nekomio.com/admin/api/resources/VR/${cimg.name}?override=true`,
               cimg.slice(),
               {
                 headers: { "X-Auth": this.token, "Content-Type": "text/html" }
               }
             )
-            .then(resolve(`https://dmsh.bupt.edu.cn/files/VR/${cimg.name}`));
+            .then(resolve(`https://vr.nekomio.com/file/VR/${cimg.name}`));
         });
         partial.push(pt);
         //console.log(pt);
       }
-      let sc = new sceneObj(this.edSceneName, mini, partial);
+      let sc = new sceneObj(this.edSceneName, mini, partial, parseInt(this.edSceneFloor));
       this.sceneMap.set(sc.name, sc);
       this.edSceneName = "";
     },
@@ -320,7 +401,7 @@ export default {
         u8arr[n] = bstr.charCodeAt(n);
       }
       return new Blob([u8arr], { type: mime });
-    },*/,
+    },*/
     sceneObjInit: function(objs) {
       console.log(objs);
       this.sceneMap = new Map();
@@ -332,7 +413,7 @@ export default {
         /*if (obj.key == "校门口") {
           this.currentScene = sc;
         }*/
-        this.currentScene = "校门口";
+        this.currentScene = "入口刷卡处";
         this.sceneMap.set(obj.key, sc);
       }
       this.loadScene(this.currentScene);
@@ -494,13 +575,13 @@ export default {
       let mat;
       if (typ == "jump") {
         geom = this.bigGeom; //new THREE.PlaneGeometry(2, 2, 10, 10);
-        mat = this.jumpMat; //arr = "https://dmsh.bupt.edu.cn/files/VR/arr.png";
+        mat = this.jumpMat; //arr = "https://vr.nekomio.com/file/VR/arr.png";
       } else if (typ == "audio") {
         geom = this.smallGeom; //new THREE.PlaneGeometry(1, 1, 10, 10);
-        mat = this.audioMat; //arr = "https://dmsh.bupt.edu.cn/files/VR/audio.png";
+        mat = this.audioMat; //arr = "https://vr.nekomio.com/file/VR/audio.png";
       } else {
         geom = this.smallGeom; //new THREE.PlaneGeometry(1, 1, 10, 10);
-        mat = this.textMat; //arr = "https://dmsh.bupt.edu.cn/files/VR/text.png";
+        mat = this.textMat; //arr = "https://vr.nekomio.com/file/VR/text.png";
       }
       //let tex = new THREE.TextureLoader().load(arr);
       //tex.magFilter = THREE.NearestFilter;
@@ -665,13 +746,13 @@ export default {
   },
   mounted() {
     this.jumpTex = new THREE.TextureLoader().load(
-      "https://dmsh.bupt.edu.cn/files/VR/arr.png"
+      "https://vr.nekomio.com/file/VR/arr.png"
     );
     this.textTex = new THREE.TextureLoader().load(
-      "https://dmsh.bupt.edu.cn/files/VR/text.png"
+      "https://vr.nekomio.com/file/VR/text.png"
     );
     this.audioTex = new THREE.TextureLoader().load(
-      "https://dmsh.bupt.edu.cn/files/VR/audio.png"
+      "https://vr.nekomio.com/file/VR/audio.png"
     );
     this.jumpMat = new THREE.MeshBasicMaterial({
       map: this.jumpTex,
@@ -688,7 +769,7 @@ export default {
       alphaTest: 0.5,
       side: THREE.DoubleSide
     });
-    let bk = "https://dmsh.bupt.edu.cn/file_admin/api/login";
+    let bk = "https://vr.nekomio.com/admin/api/login";
     this.$axios
       .post(bk, null, {
         headers: { "Content-Type": "text/plain" }
@@ -697,7 +778,7 @@ export default {
         this.token = res.data;
       });
     this.$axios
-      .get("https://dmsh.bupt.edu.cn/files/VR/vrconfig.txt")
+      .get("https://vr.nekomio.com/file/VR/vrconfig.txt")
       .then(res => {
         this.mode = res.data.mode;
         this.sceneObjInit(res.data.scenes);
@@ -753,12 +834,11 @@ body {
   position: absolute;
   top: 5%;
   left: 60%;
-  height: 20px;
+  height: 23px;
   width: 90px;
   border: none;
-  border-radius: 5px;
   background-color: #ffffff;
-  color: #0363b1;
+  color: #2d107f;
   z-index: 4;
 }
 #selectPanel {
@@ -858,5 +938,159 @@ body {
   opacity: 0.7;
   color: #000000;
 }
+.tab {
+  width: 300px;
+}
+.tab-item {
+  line-height: 29px;
+  height: 30px;
+  margin-top: -1px;
+  width: 300px;
+  border: 1px solid #ddd;
+  text-align: center;
+  cursor: pointer;
+}
+.tab-item:hover input[type='radio']:checked + .tab-item {
+  background: #ddd;
+}
+.tab-content-item {
+  transition: all 0.4s;
+  display: none;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  border: 1px solid #ddd;
+  background: #ddd;
+}
+.tab-content-item ul {
+  padding: 6px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+.tab-content-item ul .byr-floor-room {
+  padding: 6px 5px;
+  color: #2d107f;
+  flex: 1;
+  font-size: 16px;
+  cursor: pointer;
+}
+.tab-content-item ul .byr-floor-room:hover {
+  color: red;
+}
+input[type='radio'] {
+  display: none;
+}
+input[type='radio']:checked + .tab-content-item {
+  display: block;
+}
+.byr-mask-show {
+  position: absolute;
+  z-index: 2;
+  width: 40px;
+  font-size: 24px;
+  height: 40px;
+  line-height: 40px;
+  right: 10%;
+  cursor: pointer;
+  transition: all 0.4s;
+  color: #bbb;
+}
+.byr-mask-show:hover {
+  color: #ffb800;
+}
+.web {
+  width: 375px;
+  height: 666px;
+  background-color: #eeeeee;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: all 0.5s;
+}
+.web:hover {
+  background-color: #f2f2f2;
+  opacity: 1;
+}
+.web:hover .byr-main-title {
+  color: #ffb800;
+  font-size: 20px;
+}
+.sound_controller {
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+}
+.sound_controller img {
+  width: 30px;
+  height: 30px;
+}
+.byr-main-title {
+  transition: all 0.2s;
+  text-align: center;
+  color: #ffb800;
+  font: normal 700 20px/1 'Microsoft YaHei UI';
+}
+.byr-sub-title::before {
+  color: #2d107f;
+  content: '地点名下';
+  font-size: 20px;
+  margin-right: 5px;
+}
+.byr-sub-title {
+  text-align: center;
+  color: #2d107f;
+  font-size: 16px;
+}
+.accordion {
+  width: 300px;
+  margin: 30px auto;
+}
+.floor_up,
+.floor_down,
+.love,
+.message {
+  cursor: pointer;
+}
+.floor_up img,
+.floor_down img {
+  position: absolute;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+}
+.floor_up img {
+  top: 450px;
+}
+.floor_down img {
+  top: 510px;
+}
+.message img {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 40px;
+  bottom: 30px;
+}
+.love img {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 40px;
+  bottom: 30px;
+}
+.count {
+  position: absolute;
+  bottom: 32px;
+  right: 65px;
+  padding: 0 10px;
+}
+
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

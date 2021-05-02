@@ -3,7 +3,7 @@ import { format } from "path";
 //import * as THREE from "three";
 
 export default class sceneObj {
-  constructor(name, src, partialSrc) {
+  constructor(name, src, partialSrc, floor) {
     this.name = name;
     this.active = false;
     this.jumpObj = [];
@@ -11,6 +11,7 @@ export default class sceneObj {
     this.normalObj = [];
     this.bgSrc = src;
     this.partialSrc = partialSrc;
+    this.floor = floor;
   }
   addNormalObj(obj) {
     this.normalObj.push(obj);
@@ -110,6 +111,7 @@ export default class sceneObj {
       name: this.name,
       bgSrc: this.bgSrc,
       partialSrc: this.partialSrc,
+      floor: this.floor,
       //bgPreSrc: this.bgPreSrc,
       jumpobj: jumpobj,
       descobj: descobj
@@ -122,6 +124,7 @@ export default class sceneObj {
     this.active = false;
     this.bgSrc = sceneobj.bgSrc;
     this.partialSrc = sceneobj.partialSrc;
+    this.floor = sceneobj.floor;
     //this.bgPreSrc = sceneobj.bgPreSrc;
 
     for (let o of sceneobj.jumpobj) {
