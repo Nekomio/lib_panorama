@@ -1,0 +1,57 @@
+{
+    "scenes": [
+        {
+            "key": "三楼北区",
+            "value": "{\"name\":\"三楼北区\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/三楼北区.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0三楼北区.jpg\",\"https://vr.nekomio.com/file/VR/1三楼北区.jpg\",\"https://vr.nekomio.com/file/VR/2三楼北区.jpg\",\"https://vr.nekomio.com/file/VR/3三楼北区.jpg\"],\"floor\":3,\"jumpobj\":[{\"dest\":\"三楼楼梯口\",\"position\":{\"theta\":0.8115781021773602,\"row\":10,\"h\":-3.6325123047298176},\"uniqueId\":\"1619926165375\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "三楼南区2",
+            "value": "{\"name\":\"三楼南区2\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/三楼南区2.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0三楼南区2.jpg\",\"https://vr.nekomio.com/file/VR/1三楼南区2.jpg\",\"https://vr.nekomio.com/file/VR/2三楼南区2.jpg\",\"https://vr.nekomio.com/file/VR/3三楼南区2.jpg\"],\"floor\":3,\"jumpobj\":[],\"descobj\":[]}"
+        },
+        {
+            "key": "三楼南区1",
+            "value": "{\"name\":\"三楼南区1\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/三楼南区1.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0三楼南区1.jpg\",\"https://vr.nekomio.com/file/VR/1三楼南区1.jpg\",\"https://vr.nekomio.com/file/VR/2三楼南区1.jpg\",\"https://vr.nekomio.com/file/VR/3三楼南区1.jpg\"],\"floor\":3,\"jumpobj\":[{\"dest\":\"三楼楼梯口\",\"position\":{\"theta\":1.3770647798235252,\"row\":10,\"h\":-3.8429532265980706},\"uniqueId\":\"1619926192783\"},{\"dest\":\"三楼南区2\",\"position\":{\"theta\":3.082251459021982,\"row\":10,\"h\":-3.955455025629692},\"uniqueId\":\"1619926212175\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "入口刷卡处",
+            "value": "{\"name\":\"入口刷卡处\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/入口刷卡处.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0入口刷卡处.jpg\",\"https://vr.nekomio.com/file/VR/1入口刷卡处.jpg\",\"https://vr.nekomio.com/file/VR/2入口刷卡处.jpg\",\"https://vr.nekomio.com/file/VR/3入口刷卡处.jpg\"],\"floor\":1,\"jumpobj\":[{\"dest\":\"入口屏幕处\",\"position\":{\"theta\":0.25830872929515886,\"row\":10,\"h\":-4.3680178836770285},\"uniqueId\":\"1619925300333\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "入口屏幕处",
+            "value": "{\"name\":\"入口屏幕处\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/入口屏幕处.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0入口屏幕处.jpg\",\"https://vr.nekomio.com/file/VR/1入口屏幕处.jpg\",\"https://vr.nekomio.com/file/VR/2入口屏幕处.jpg\",\"https://vr.nekomio.com/file/VR/3入口屏幕处.jpg\"],\"floor\":1,\"jumpobj\":[{\"dest\":\"入口刷卡处\",\"position\":{\"theta\":5.462880558742237,\"row\":10,\"h\":-4.2103581336749265},\"uniqueId\":\"1619925335734\"},{\"dest\":\"二楼楼梯口\",\"position\":{\"theta\":0.35779249665883806,\"row\":10,\"h\":-4.939418665842315},\"uniqueId\":\"1619925820974\"},{\"dest\":\"二楼楼梯口\",\"position\":{\"theta\":4.1556289489984986,\"row\":10,\"h\":-3.875155864521038},\"uniqueId\":\"1619925842670\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "二楼楼梯口",
+            "value": "{\"name\":\"二楼楼梯口\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/二楼楼梯口.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0二楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/1二楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/2二楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/3二楼楼梯口.jpg\"],\"floor\":2,\"jumpobj\":[{\"dest\":\"二楼新书借阅室\",\"position\":{\"theta\":3.186971214141641,\"row\":10,\"h\":-5.2249856471594995},\"uniqueId\":\"1619925871894\"},{\"dest\":\"入口屏幕处\",\"position\":{\"theta\":5.248205060746953,\"row\":10,\"h\":-5.04527623815021},\"uniqueId\":\"1619925901126\"},{\"dest\":\"入口屏幕处\",\"position\":{\"theta\":1.0192722831646925,\"row\":10,\"h\":-4.87859659138734},\"uniqueId\":\"1619925909142\"},{\"dest\":\"三楼楼梯口\",\"position\":{\"theta\":4.026474584350926,\"row\":10,\"h\":-4.099230338415734},\"uniqueId\":\"1619925921670\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "三楼楼梯口",
+            "value": "{\"name\":\"三楼楼梯口\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/三楼楼梯口.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0三楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/1三楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/2三楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/3三楼楼梯口.jpg\"],\"floor\":3,\"jumpobj\":[{\"dest\":\"二楼楼梯口\",\"position\":{\"theta\":0.3351032163829142,\"row\":10,\"h\":-5.313985795180841},\"uniqueId\":\"1619925942246\"},{\"dest\":\"四楼楼梯口\",\"position\":{\"theta\":5.410520681182425,\"row\":10,\"h\":-4.954586684324084},\"uniqueId\":\"1619925949086\"},{\"dest\":\"三楼北区\",\"position\":{\"theta\":1.3386675362796476,\"row\":10,\"h\":-5.750052520432814},\"uniqueId\":\"1619926139303\"},{\"dest\":\"三楼南区1\",\"position\":{\"theta\":4.5814892864851124,\"row\":10,\"h\":-5.165333288666451},\"uniqueId\":\"1619926148919\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "四楼楼梯口",
+            "value": "{\"name\":\"四楼楼梯口\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/四楼楼梯口.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0四楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/1四楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/2四楼楼梯口.jpg\",\"https://vr.nekomio.com/file/VR/3四楼楼梯口.jpg\"],\"floor\":4,\"jumpobj\":[{\"dest\":\"三楼楼梯口\",\"position\":{\"theta\":3.9200094999792583,\"row\":10,\"h\":-4.539904997395499},\"uniqueId\":\"1619926233783\"}],\"descobj\":[]}"
+        },
+        {
+            "key": "二楼北区(社科)2",
+            "value": "{\"name\":\"二楼北区(社科)2\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/二楼北区(社科)2.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0二楼北区(社科)2.jpg\",\"https://vr.nekomio.com/file/VR/1二楼北区(社科)2.jpg\",\"https://vr.nekomio.com/file/VR/2二楼北区(社科)2.jpg\",\"https://vr.nekomio.com/file/VR/3二楼北区(社科)2.jpg\"],\"floor\":2,\"jumpobj\":[],\"descobj\":[]}"
+        },
+        {
+            "key": "二楼北区(社科)1",
+            "value": "{\"name\":\"二楼北区(社科)1\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/二楼北区(社科)1.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0二楼北区(社科)1.jpg\",\"https://vr.nekomio.com/file/VR/1二楼北区(社科)1.jpg\",\"https://vr.nekomio.com/file/VR/2二楼北区(社科)1.jpg\",\"https://vr.nekomio.com/file/VR/3二楼北区(社科)1.jpg\"],\"floor\":2,\"jumpobj\":[],\"descobj\":[]}"
+        },
+        {
+            "key": "二楼南区(科技)2",
+            "value": "{\"name\":\"二楼南区(科技)2\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/二楼南区(科技)2.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0二楼南区(科技)2.jpg\",\"https://vr.nekomio.com/file/VR/1二楼南区(科技)2.jpg\",\"https://vr.nekomio.com/file/VR/2二楼南区(科技)2.jpg\",\"https://vr.nekomio.com/file/VR/3二楼南区(科技)2.jpg\"],\"floor\":2,\"jumpobj\":[],\"descobj\":[]}"
+        },
+        {
+            "key": "二楼南区(科技)1",
+            "value": "{\"name\":\"二楼南区(科技)1\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/二楼南区(科技)1.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0二楼南区(科技)1.jpg\",\"https://vr.nekomio.com/file/VR/1二楼南区(科技)1.jpg\",\"https://vr.nekomio.com/file/VR/2二楼南区(科技)1.jpg\",\"https://vr.nekomio.com/file/VR/3二楼南区(科技)1.jpg\"],\"floor\":2,\"jumpobj\":[],\"descobj\":[]}"
+        },
+        {
+            "key": "二楼新书借阅室",
+            "value": "{\"name\":\"二楼新书借阅室\",\"bgSrc\":\"https://vr.nekomio.com/file/VR/二楼新书借阅室.jpg\",\"partialSrc\":[\"https://vr.nekomio.com/file/VR/0二楼新书借阅室.jpg\",\"https://vr.nekomio.com/file/VR/1二楼新书借阅室.jpg\",\"https://vr.nekomio.com/file/VR/2二楼新书借阅室.jpg\",\"https://vr.nekomio.com/file/VR/3二楼新书借阅室.jpg\"],\"floor\":2,\"jumpobj\":[{\"dest\":\"二楼楼梯口\",\"position\":{\"theta\":0.19373154697136932,\"row\":10,\"h\":-5.446390350150309},\"uniqueId\":\"1619926263527\"}],\"descobj\":[]}"
+        }
+    ],
+    "mode": "edit"
+}
